@@ -2,7 +2,12 @@ import { Doujin } from "nhentai";
 import Image from "next/image";
 import { RemoveButton } from "components/removeButton";
 
-export const Card = ({ doujin, handlerRemove }: { doujin: Doujin[], handlerRemove: (index: number) => void }) => {
+type Props = {
+  doujin: Doujin[];
+  handlerRemove: (index: number) => void;
+};
+
+export const Card = ({ doujin, handlerRemove }: Props) => {
   return (
     <>
       {doujin.map(({ titles, pages, url }, index) => (

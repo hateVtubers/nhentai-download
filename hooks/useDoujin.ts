@@ -6,11 +6,8 @@ export const useDoujin = <T>(initialState: T) => {
   const handleDoujin = useCallback(
     (e: SyntheticEvent) => {
       const { value } = e.target as HTMLInputElement;
-      value.length === 6 &&
-        // @ts-ignore
-        e.key === "Enter" &&
-        // @ts-ignore
-        setDoujins([...doujins, value]);
+      // @ts-ignore
+      value.length === 6 && e.key === "Enter" && setDoujins([...doujins, value]);
     },
     [doujins]
   );

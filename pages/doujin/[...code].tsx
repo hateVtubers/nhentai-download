@@ -1,21 +1,21 @@
-import { Card } from "components/Card";
-import { Download } from "components/Download";
-import { useDoujin } from "hooks/useDoujin";
 import type {
   GetServerSideProps,
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
 import Head from "next/head";
+import { Card } from "components/Card";
+import { Download } from "components/Download";
+import { useDoujin } from "hooks/useDoujin";
 import { Doujin } from "nhentai";
-
-export type DoujinRes = (Doujin | { doujin: string })[];
 
 const DoujinDownload: NextPage = ({
   doujin,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { doujins, handlerRemove } = useDoujin(JSON.parse(doujin as string));
-  const map = (separator: string) => doujins.map(({ id }: { id: string }) => id).join(separator);
+  const { doujins, handlerRemove } = useDoujin<Doujin[]>(
+    JSON.parse(doujin as string)
+  );
+  const map = (separator: string) => doujins.map(({ id }) => id).join(separator);
   return (
     <>
       <Head>
@@ -23,10 +23,7 @@ const DoujinDownload: NextPage = ({
       </Head>
       <main className="bg-mine-shaft-500 p-4 rounded flex items-center flex-col gap-4">
         <Card doujin={doujins} handlerRemove={handlerRemove} />
-        <Download
-          url={map("/")}
-          doujin={doujins}
-        />
+        <Download url={map("/")} doujin={doujins} />
       </main>
     </>
   );
