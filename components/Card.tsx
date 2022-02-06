@@ -1,32 +1,31 @@
-import { Doujin } from "nhentai";
 import Image from "next/image";
-import { RemoveButton } from "components/removeButton";
+import { Data } from "libs/doujin";
 
 type Props = {
-  doujin: Doujin[];
-  handlerRemove: (index: number) => void;
+  data: Data[];
 };
 
-export const Card = ({ doujin, handlerRemove }: Props) => {
+export const Card = ({ data }: Props) => {
   return (
     <>
-      {doujin.map(({ titles, pages, url }, index) => (
-        <div
-          className="flex flex-col items-center gap-1 relative "
-          key={titles.japanese}
-        >
+      {data.map(({ title, id, images }) => (
+        <div className="flex flex-col items-center gap-2 relative " key={id}>
           <h1 className="md:text-lg font-semibold">
-            {titles?.pretty ?? titles.english}
+            {title?.simple ?? title.english}
           </h1>
-          <span className="text-xs">{url}</span>
+          <a
+            href={`https://nhentai.net/g/${id}/`}
+            target="_blank"
+            className="text-xs">
+            {id}
+          </a>
           <Image
-            src={pages[0].url}
-            alt={titles.english}
+            src={images[0].url}
+            alt={title.english}
             width={250}
             height={300}
             priority
           />
-          <RemoveButton onClick={() => handlerRemove(index)} />
         </div>
       ))}
     </>

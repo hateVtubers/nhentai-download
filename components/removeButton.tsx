@@ -1,4 +1,4 @@
-export const RemoveButton = ({ onClick }: { onClick: () => void }) => {
+export const RemoveButton = ({ onClick }: { onClick?: () => void }) => {
   return (
     <button className="absolute top-0 right-0" onClick={onClick}>
       <svg
