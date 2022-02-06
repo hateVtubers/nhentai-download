@@ -16,6 +16,7 @@ export const Card = ({ data }: Props) => {
           <a
             href={`https://nhentai.net/g/${id}/`}
             target="_blank"
+            rel="noreferrer"
             className="text-xs">
             {id}
           </a>

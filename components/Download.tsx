@@ -22,7 +22,7 @@ export const Download = ({ doujins, map }: Props) => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  const handleDownload = () => {
+  const handleDownload = () => { // please I need help, this code is very trash
     const Zip = new JSZip();
 
     data.forEach((url, index) => {
