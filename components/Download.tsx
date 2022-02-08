@@ -1,5 +1,6 @@
 import { Data } from "libs/doujin";
-import useSWR from "swr";
+/* import { useEffect, useState } from "react"; */
+import useSWRImmutable from "swr";
 import { saveAs } from "file-saver";
 import { Loader } from "components/Loader";
 import JSZip from "jszip";
@@ -18,9 +19,23 @@ export const Download = ({ doujins, map }: Props) => {
     ({ id }) =>
       `https://bxgpgpgunsannvfchsyn.supabase.in/storage/v1/object/public/base64/${id}.json`
   );
-  const { data } = useSWR<string[][]>(urlArray, fetcher);
+  const { data } = useSWRImmutable<string[][]>(urlArray, fetcher, {
+    loadingTimeout: 3000, // why timeout? because database is slow
+  });
+  /*   const [data, setData] = useState<string[][] | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      setTimeout(async () => {
+        const a = await fetcher(...urlArray);
+        console.log(a);
+        setData(a);
+      }, 3000);
+    };
 
-  if (!data) return <Loader width={32} height={32} />;
+    fetchData();
+  }, []); */
+
+  if (!data) return <Loader width={40} height={40} />;
 
   const handleDownload = () => {
     // please I need help, this code is very trash
@@ -39,7 +54,7 @@ export const Download = ({ doujins, map }: Props) => {
     });
 
     Zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, `${map}.zip`);
+      saveAs(content, `[${map}].zip`);
     });
   };
 

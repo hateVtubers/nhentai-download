@@ -16,7 +16,7 @@ const DoujinDownload: NextPage<Props> = ({ datas }) => {
       <Head>
         <title>{map("-")}</title>
       </Head>
-      <main className="bg-mine-shaft-500 p-4 rounded flex items-center flex-col gap-4">
+      <main className="bg-mine-shaft-500 p-4 rounded flex items-center flex-col gap-4 max-w-[300px]">
         <Card data={datas} />
         <Download doujins={datas} map={map("-")} />
       </main>

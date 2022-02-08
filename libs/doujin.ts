@@ -75,6 +75,6 @@ export const updateDoujinData = async (codes: string[]) => {
       .from("base64")
       .upload(`${id}.json`, JSON.stringify(base64));
 
-    console.log(data, error);
+    /* console.log(data, error); */ // please only working in developer mode for view the error or data
   });
 };

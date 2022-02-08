@@ -24,7 +24,7 @@ export const Card = ({ data }: Props) => {
             src={images[0].url}
             alt={title.english}
             width={250}
-            height={300}
+            height={330}
             priority
           />
         </div>
