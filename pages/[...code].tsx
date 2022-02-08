@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const codes = [...new Set(query.code)]; // remove duplicated codes from query(url)
   const datas = await getDoujinData(codes);
 
-  updateDoujinData(codes); // updata doujin are not exists in database
+  await updateDoujinData(codes); // updata doujin are not exists in database
 
   return {
     props: {

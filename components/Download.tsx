@@ -1,6 +1,7 @@
 import { Data } from "libs/doujin";
 import useSWR from "swr";
 import { saveAs } from "file-saver";
+import { Loader } from "components/Loader";
 import JSZip from "jszip";
 
 const fetcher = (...args: string[]) => {
@@ -17,12 +18,12 @@ export const Download = ({ doujins, map }: Props) => {
     ({ id }) =>
       `https://bxgpgpgunsannvfchsyn.supabase.in/storage/v1/object/public/base64/${id}.json`
   );
-  const { data, error } = useSWR<string[][]>(urlArray, fetcher);
+  const { data } = useSWR<string[][]>(urlArray, fetcher);
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data) return <Loader width={32} height={32} />;
 
-  const handleDownload = () => { // please I need help, this code is very trash
+  const handleDownload = () => {
+    // please I need help, this code is very trash
     const Zip = new JSZip();
 
     data.forEach((url, index) => {
@@ -45,7 +46,8 @@ export const Download = ({ doujins, map }: Props) => {
   return (
     <button
       onClick={handleDownload}
-      className="bg-cod-gray-500 py-1 px-3 rounded">
+      className="bg-cod-gray-500 py-1 px-3 rounded"
+    >
       Download zip
     </button>
   );
