@@ -20,7 +20,7 @@ export const Download = ({ doujins, map }: Props) => {
       `https://bxgpgpgunsannvfchsyn.supabase.in/storage/v1/object/public/base64/${id}.json`
   );
   const { data } = useSWRImmutable<string[][]>(urlArray, fetcher, {
-    loadingTimeout: 3000, // why timeout? because database is slow
+    loadingTimeout: 6000, // why timeout? because database is slow
   });
   /*   const [data, setData] = useState<string[][] | null>(null);
   useEffect(() => {

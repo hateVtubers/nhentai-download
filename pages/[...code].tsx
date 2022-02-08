@@ -7,9 +7,15 @@ import { Download } from "components/Download";
 
 type Props = {
   datas: Data[];
+  server:
+    | ({
+        Key: string;
+      } | null)[]
+    | undefined;
 };
 
-const DoujinDownload: NextPage<Props> = ({ datas }) => {
+const DoujinDownload: NextPage<Props> = ({ datas, server }) => {
+  console.log(server);
   const map = (s: string) => datas.map(({ id }) => id).join(s);
   return (
     <>
@@ -28,11 +34,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const codes = [...new Set(query.code)]; // remove duplicated codes from query(url)
   const datas = await getDoujinData(codes);
 
-  await updateDoujinData(codes); // updata doujin are not exists in database
+  const server = await updateDoujinData(codes); // updata doujin are not exists in database
 
   return {
     props: {
       datas,
+      server,
     },
   };
 };
