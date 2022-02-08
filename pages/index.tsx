@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import nhentai from "public/nhentai.svg";
+import nhentai from "public/icons/nhentai.svg";
 import Link from "next/link";
 import { useDoujin } from "hooks/useDoujin";
 import { DoujinList } from "components/DoujinList";
