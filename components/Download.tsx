@@ -17,7 +17,7 @@ type Props = {
 export const Download = ({ doujins, map }: Props) => {
   const urlArray = doujins.map(
     ({ id }) =>
-      `https://bxgpgpgunsannvfchsyn.supabase.in/storage/v1/object/public/base64/${id}.json`
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL_DOWNLOAD}/storage/v1/object/public/base64/${id}.json`
   );
   const { data } = useSWRImmutable<string[][]>(urlArray, fetcher, {
     loadingTimeout: 6000, // why timeout? because database is slow
