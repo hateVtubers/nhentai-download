@@ -9,7 +9,7 @@ export const Card = ({ data }: Props) => {
   return (
     <>
       {data.map(({ title, id, images }) => (
-        <div className="flex flex-col items-center gap-2 relative " key={id}>
+        <div className="flex flex-col items-center gap-2 relative" key={id}>
           <h1 className="md:text-lg font-semibold">
             {title?.simple ?? title.english}
           </h1>
@@ -17,7 +17,8 @@ export const Card = ({ data }: Props) => {
             href={`https://nhentai.net/g/${id}/`}
             target="_blank"
             rel="noreferrer"
-            className="text-xs">
+            className="text-xs"
+          >
             {id}
           </a>
           <Image
