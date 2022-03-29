@@ -1,34 +1,23 @@
-import type { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
-import { Card } from "components/Card";
-import { getDoujinData, updateDoujinData } from "libs/doujin";
-import { Data } from "libs/doujin";
-import { Download } from "components/Download";
+import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
+import { Card } from 'components/Card';
+import { getDoujins, Data } from 'libs/doujin';
+import { Download } from 'components/Download';
 
 type Props = {
-  datas: Data[];
-  server:
-    | ({
-        Key: string;
-      } | null)[]
-    | undefined;
+  doujins: Data[];
 };
 
-const DoujinDownload: NextPage<Props> = ({ datas, server }) => {
-  console.log(server);
-  const urlArray = datas.map(
-    ({ id }) =>
-      `${process.env.NEXT_PUBLIC_SUPABASE_URL_DOWNLOAD}/storage/v1/object/public/base64/${id}.json`
-  );
-  const map = (s: string) => datas.map(({ id }) => id).join(s);
+const DoujinDownload: NextPage<Props> = ({ doujins }) => {
+  console.log({ doujins });
   return (
     <>
       <Head>
-        <title>{map("-")}</title>
+        <title>{doujins.map(({ id }) => id).join('-')}</title>
       </Head>
-      <main className="bg-mine-shaft-500 my-5 p-4 rounded flex items-center flex-col gap-4 max-w-[300px]">
-        <Card data={datas} />
-        <Download doujins={datas} map={map("-")} urlArray={urlArray} />
+      <main className='bg-mine-shaft-500 my-5 p-4 rounded flex items-center flex-col gap-4'>
+        <Card doujins={doujins} />
+        <Download doujins={doujins} />
       </main>
     </>
   );
@@ -36,14 +25,13 @@ const DoujinDownload: NextPage<Props> = ({ datas, server }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const codes = [...new Set(query.code)]; // remove duplicated codes from query(url)
-  const datas = await getDoujinData(codes);
+  const doujins = await getDoujins(codes);
 
-  const server = await updateDoujinData(codes); // updata doujin are not exists in database
+  if (!doujins) return { redirect: { destination: '/404', permanent: false } };
 
   return {
     props: {
-      datas,
-      server,
+      doujins,
     },
   };
 };
