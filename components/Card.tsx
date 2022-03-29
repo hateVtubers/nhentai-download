@@ -21,7 +21,7 @@ export const Card = ({ doujins }: Props) => {
               {id}
             </a>
             <Image
-              src={images.at(0)?.url as string}
+              src={images[0]?.url as string}
               alt={title?.english ?? title?.japanese}
               width={250}
               height={350}
