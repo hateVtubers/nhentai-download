@@ -11,7 +11,7 @@ export const Download = ({ doujins }: Props) => {
     handleDownload,
     handleDownloadFromFirebase,
   } = useDownload(doujins);
-  console.log({ loading, data });
+  /* console.log({ loading, data }); */
   return (
     <button
       onClick={data ? handleDownload : handleDownloadFromFirebase}

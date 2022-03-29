@@ -9,7 +9,7 @@ type Props = {
 };
 
 const DoujinDownload: NextPage<Props> = ({ doujins }) => {
-  console.log({ doujins });
+  /* console.log({ doujins }); */
   return (
     <>
       <Head>
