@@ -29,6 +29,7 @@ const Home: NextPage = () => {
             type='number'
             className='outline-none bg-cod-gray-500 py-2 px-3 rounded text-sm w-full placeholder:text-amaranth-500'
             placeholder='example: 177013'
+            autoComplete='on'
             {...register('doujin', { required: true, valueAsNumber: true })}
           />
         </form>
