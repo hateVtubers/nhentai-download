@@ -36,7 +36,7 @@ const Home: NextPage = () => {
         {!(doujins.length === 0) && (
           <>
             <DoujinList doujins={doujins} handlerRemove={handleRemove} />
-            <Link href={`/${doujins.join('/')}`}>
+            <Link href={`/g/${doujins.join('/')}`}>
               <a className='bg-cod-gray-500 py-1 px-4 rounded-md'>
                 Conver to zip
               </a>
