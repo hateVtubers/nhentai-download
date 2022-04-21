@@ -1,12 +1,12 @@
-import type { GetServerSideProps, NextPage } from 'next';
-import Head from 'next/head';
-import { Card } from 'components/Card';
-import { getDoujins, Data } from 'libs/doujin';
-import { Download } from 'components/Download';
+import type { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
+import { Card } from 'components/Card'
+import { getDoujins, Data } from 'libs/doujin'
+import { Download } from 'components/Download'
 
 type Props = {
-  doujins: Data[];
-};
+  doujins: Data[]
+}
 
 const DoujinDownload: NextPage<Props> = ({ doujins }) => {
   /* console.log({ doujins }); */
@@ -20,20 +20,20 @@ const DoujinDownload: NextPage<Props> = ({ doujins }) => {
         <Download doujins={doujins} />
       </main>
     </>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const codes = [...new Set(query.code)]; // remove duplicated codes from query(url)
-  const doujins = await getDoujins(codes);
+  const codes = [...new Set(query.code)] // remove duplicated codes from query(url)
+  const doujins = await getDoujins(codes)
 
-  if (!doujins) return { redirect: { destination: '/404', permanent: false } };
+  if (!doujins) return { redirect: { destination: '/404', permanent: false } }
 
   return {
     props: {
       doujins,
     },
-  };
-};
+  }
+}
 
-export default DoujinDownload;
+export default DoujinDownload
