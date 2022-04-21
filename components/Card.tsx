@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import { Data } from 'libs/doujin';
+import Image from 'next/image'
+import { Data } from 'libs/doujin'
 
 type Props = {
-  doujins: Data[];
-};
+  doujins: Data[]
+}
 
 export const Card = ({ doujins }: Props) => {
   return (
@@ -18,10 +18,10 @@ export const Card = ({ doujins }: Props) => {
               {title?.english ?? title?.japanese}
             </h1>
             <a href={url} target='_blank' rel='noreferrer' className='text-xs'>
-              {id}
+              {`#${id}`}
             </a>
             <Image
-              src={images[0]?.url as string}
+              src={images.at(0)?.url as string}
               alt={title?.english ?? title?.japanese}
               width={250}
               height={350}
@@ -32,5 +32,5 @@ export const Card = ({ doujins }: Props) => {
         ))}
       </ul>
     </>
-  );
-};
+  )
+}
