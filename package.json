@@ -7,6 +7,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.5.8",
     "file-saver": "^2.0.5",
@@ -14,13 +15,12 @@
     "graphql": "^16.3.0",
     "image-to-base64": "^2.2.0",
     "jszip": "^3.7.1",
-    "next": "12.0.7",
+    "next": "^12.1.5",
     "next-pwa": "^5.4.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-hook-form": "^7.28.1",
-    "react-hot-toast": "^2.2.0",
-    "swr": "^1.1.2"
+    "react-hot-toast": "^2.2.0"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.5",
