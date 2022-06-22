@@ -11,10 +11,11 @@ export const Download = ({ doujins }: Props) => {
     handleDownload,
     handleDownloadFromFirebase,
   } = useDownload(doujins);
-  /* console.log({ loading, data }); */
+
   return (
     <button
       onClick={data ? handleDownload : handleDownloadFromFirebase}
+      /* onClick={handleDownload} */
       disabled={loading}
       className={`bg-cod-gray-500 py-1 px-3 rounded ${
         loading ? 'cursor-not-allowed' : 'cursor-pointer'
