@@ -1,11 +1,15 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import { Layout } from 'components/Layout';
-import Head from 'next/head';
-import { ApolloProvider } from '@apollo/client';
-import client from 'apollo/client';
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import { Layout } from 'components/Layout'
+import Head from 'next/head'
+import { ApolloProvider } from '@apollo/client'
+import client from 'apollo/client'
+import { FormProvider, useForm } from 'react-hook-form'
+import { TodoDoujinProvider } from 'hooks/useTodoDoujin'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const methods = useForm()
+
   return (
     <>
       <Head>
@@ -26,12 +30,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel='manifest' href='/manifest.json' />
       </Head>
       <ApolloProvider client={client}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <FormProvider {...methods}>
+          <TodoDoujinProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </TodoDoujinProvider>
+        </FormProvider>
       </ApolloProvider>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

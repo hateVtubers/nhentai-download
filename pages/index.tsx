@@ -1,13 +1,15 @@
-import type { NextPage } from 'next';
-import Image from 'next/image';
-import nhentai from 'public/icons/nhentai.svg';
-import Link from 'next/link';
-import { useDoujin } from 'hooks/useDoujin';
-import { DoujinList } from 'components/DoujinList';
-import Head from 'next/head';
+import type { NextPage } from 'next'
+import Image from 'next/image'
+import nhentai from 'public/icons/nhentai.svg'
+import Link from 'next/link'
+import Head from 'next/head'
+import { useTodoDoujin } from 'hooks/useTodoDoujin'
+import { useFormContext } from 'react-hook-form'
+import { DoujinList } from 'components/DoujinList'
 
 const Home: NextPage = () => {
-  const { doujins, register, handleSubmit, handleRemove } = useDoujin();
+  const { handleSubmit, doujins } = useTodoDoujin()
+  const { register } = useFormContext()
 
   return (
     <>
@@ -33,12 +35,13 @@ const Home: NextPage = () => {
             {...register('doujin', { required: true, valueAsNumber: true })}
           />
         </form>
-        {!(doujins.length === 0) && (
+        {/* convert falzy to false, react render 0 */}
+        {!!doujins.length && (
           <>
-            <DoujinList doujins={doujins} handlerRemove={handleRemove} />
-            <Link href={`/g/${doujins.join('/')}`}>
+            <DoujinList />
+            <Link href={`/${doujins.join('/')}`}>
               <a className='bg-cod-gray-500 py-1 px-4 rounded-md'>
-                Conver to zip
+                Download Doujins
               </a>
             </Link>
           </>
@@ -55,7 +58,7 @@ const Home: NextPage = () => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
