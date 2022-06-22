@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const searchDoujin = gql`
   query SearchDoujin($doujinID: ID!) {
@@ -12,7 +12,7 @@ export const searchDoujin = gql`
       }
     }
   }
-`;
+`
 
 export const getDoujinFromUrl = gql`
   query GetDoujin($doujinId: ID!) {
@@ -30,4 +30,4 @@ export const getDoujinFromUrl = gql`
       }
     }
   }
-`;
+`
