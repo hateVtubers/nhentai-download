@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@apollo/client': ^3.6.8
+  '@playwright/test': ^1.22.2
   '@types/file-saver': ^2.0.5
   '@types/node': 18.0.0
   '@types/react': 18.0.14
@@ -37,6 +38,7 @@ dependencies:
   react-hot-toast: 2.2.0_vt6aeitzauirmcdhimiad2yjxy
 
 devDependencies:
+  '@playwright/test': 1.22.2
   '@types/file-saver': 2.0.5
   '@types/node': 18.0.0
   '@types/react': 18.0.14
@@ -1889,6 +1891,15 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+
+  /@playwright/test/1.22.2:
+    resolution: {integrity: sha512-cCl96BEBGPtptFz7C2FOSN3PrTnJ3rPpENe+gYCMx4GNNDlN4tmo2D89y13feGKTMMAIVrXfSQ/UmaQKLy1XLA==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@types/node': 18.0.0
+      playwright-core: 1.22.2
+    dev: true
 
   /@protobufjs/aspromise/1.1.2:
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -4312,6 +4323,12 @@ packages:
     dependencies:
       find-up: 4.1.0
     dev: false
+
+  /playwright-core/1.22.2:
+    resolution: {integrity: sha512-w/hc/Ld0RM4pmsNeE6aL/fPNWw8BWit2tg+TfqJ3+p59c6s3B6C8mXvXrIPmfQEobkcFDc+4KirNzOQ+uBSP1Q==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
 
   /postcss-import/14.1.0_postcss@8.4.14:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
