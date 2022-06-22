@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@apollo/client': ^3.6.8
   '@types/file-saver': ^2.0.5
-  '@types/image-to-base64': ^2.1.0
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   autoprefixer: ^10.4.7
@@ -12,7 +11,6 @@ specifiers:
   file-saver: ^2.0.5
   firebase: ^9.8.3
   graphql: ^16.5.0
-  image-to-base64: ^2.2.0
   jszip: ^3.10.0
   next: ^12.1.6
   next-pwa: ^5.5.4
@@ -30,7 +28,6 @@ dependencies:
   file-saver: 2.0.5
   firebase: 9.8.3
   graphql: 16.5.0
-  image-to-base64: 2.2.0
   jszip: 3.10.0
   next: 12.1.6_4cc5zw5azim2bix77d63le72su
   next-pwa: 5.5.4_luloen44oukssb55dmrjlgt2ym
@@ -41,7 +38,6 @@ dependencies:
 
 devDependencies:
   '@types/file-saver': 2.0.5
-  '@types/image-to-base64': 2.1.0
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   autoprefixer: 10.4.7_postcss@8.4.14
@@ -2037,10 +2033,6 @@ packages:
       '@types/node': 18.0.0
     dev: false
 
-  /@types/image-to-base64/2.1.0:
-    resolution: {integrity: sha512-UgmqJVJyPIkzzI23TWqLc9iO+hZTzNoVD0rEf+I70FeKtcxxvLIlKJ5CrejkxkvDc/8/lk9yswSYZoAv8eyOYQ==}
-    dev: true
-
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: false
@@ -3568,14 +3560,6 @@ packages:
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
-
-  /image-to-base64/2.2.0:
-    resolution: {integrity: sha512-Z+aMwm/91UOQqHhrz7Upre2ytKhWejZlWV/JxUTD1sT7GWWKFDJUEV5scVQKnkzSgPHFuQBUEWcanO+ma0PSVw==}
-    dependencies:
-      node-fetch: 2.6.7
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /immediate/3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
