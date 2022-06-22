@@ -9,7 +9,6 @@ type Props = {
 }
 
 const DoujinDownload: NextPage<Props> = ({ doujins }) => {
-  console.log({ doujins });
   return (
     <>
       <Head>
@@ -26,8 +25,6 @@ const DoujinDownload: NextPage<Props> = ({ doujins }) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const codes = [...new Set(query.code)] // remove duplicated codes from query(url)
   const doujins = await getDoujins(codes)
-
-  console.log(doujins)
 
   if (!doujins.length) return { redirect: { destination: '/404', permanent: false } }
 
