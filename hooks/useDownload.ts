@@ -3,7 +3,7 @@ import { Data, submitToFirebaseStorage } from 'libs/doujin'
 import { saveAs } from 'file-saver'
 import { useEffect, useState } from 'react'
 import { ref, listAll, getDownloadURL } from 'firebase/storage'
-import { storage } from '../firebase/client'
+import { storage } from 'libs/firebase/client'
 import { toast } from 'react-hot-toast'
 import { getBase64 } from 'libs/base64image'
 

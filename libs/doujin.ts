@@ -1,6 +1,6 @@
 import client from 'apollo/client';
 import { getDoujinFromUrl } from 'apollo/querys';
-import { storage } from '../firebase/client';
+import { storage } from 'libs/firebase/client';
 import { ref, uploadBytes } from 'firebase/storage';
 
 export type Data = {

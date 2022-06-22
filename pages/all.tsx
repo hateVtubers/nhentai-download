@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { storage } from '../firebase/client'
+import { storage } from 'libs/firebase/client'
 import { ref, listAll, getDownloadURL } from 'firebase/storage'
 import { useEffect, useState } from 'react'
 import { List } from 'components/List'
