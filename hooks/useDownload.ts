@@ -5,8 +5,7 @@ import { useEffect, useState } from 'react'
 import { ref, listAll, getDownloadURL } from 'firebase/storage'
 import { storage } from '../firebase/client'
 import { toast } from 'react-hot-toast'
-// @ts-ignore
-import imageToBase64 from 'image-to-base64/browser'
+import { getBase64 } from 'libs/base64image'
 
 type Download = {
   loading: boolean
@@ -27,51 +26,46 @@ export const useDownload = (doujins: Data[]) => {
 
     if (items.find(({ name }) => name === zipTitle)) return null
 
-    /* old version */
-    /* for await (const { images, id } of doujins) {
-      const toastId = toast.loading(`Creating zip for ${id}...`)
-
-      const imgFolder = zip.folder(id)
-      for await (const [i, { url }] of images.entries()) {
-        const base64 = await imageToBase64(url)
-        imgFolder?.file(`${i + 1}.jpg`, base64, { base64: true })
-      }
-
-      toast.success(`Zip created for ${id}!`, { id: toastId })
-    } */
-
-    /* new version */
     await Promise.all(
-      doujins.map(({ images, id }) => {
+      doujins.map(async ({ id, images }) => {
         const imgFolder = zip.folder(id)
+        const toastId = toast.loading(`converting ${id} doujin to zip...`)
 
-        Promise.all(
-          images.map(({ url }, i) => {
-            const base64 = imageToBase64(url)
+        await Promise.all(
+          images.map(async ({ url }, i) => {
+            const { base64 } = await getBase64(url)
+            const arrayExtension = url.toLowerCase().split('')
+            const extension = arrayExtension
+              .slice(-3)
+              .toString()
+              .replaceAll(',', '')
 
-            imgFolder?.file(`${i + 1}.jpg`, base64, { base64: true })
+            const imgName = `${i + 1}.${extension}`
+
+            imgFolder?.file(imgName, base64, { base64: true })
           })
         )
+
+        toast.success(`doujin ${id} is converted to zip!`, {
+          id: toastId,
+        })
       })
     )
 
-    const toastTest = await toast.promise(
-      submitToFirebaseStorage(
-        await zip.generateAsync({ type: 'blob' }),
-        zipTitle
-      ),
-      {
-        loading: 'submitting zip to storage...',
-        success: 'zip submitted!',
-        error: 'error submitting zip!',
-      }
-    )
+    const zipDoujin = await zip.generateAsync({ type: 'blob' })
 
-    return toastTest
+    await toast.promise(submitToFirebaseStorage(zipDoujin, zipTitle), {
+      loading: 'uploading to firebase storage...',
+      success: 'uploaded to firebase storage!',
+      error: 'failed to upload to firebase storage!',
+    })
+
+    return zipDoujin
   }
 
   useEffect(() => {
     getZip().then((data) => setDownload({ loading: false, data }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleDownload = () => {
