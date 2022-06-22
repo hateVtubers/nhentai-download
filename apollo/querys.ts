@@ -14,7 +14,7 @@ export const searchDoujin = gql`
   }
 `
 
-export const getDoujinFromUrl = gql`
+export const getDoujinFromId = gql`
   query GetDoujin($doujinId: ID!) {
     nhentai {
       info(doujin_id: $doujinId) {

@@ -10,7 +10,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
 }
 
-export const app = getApps().length
-  ? getApps().at(-1)
-  : initializeApp(firebaseConfig)
+const appLength = getApps().length
+
+export const app = appLength ? getApps().at(-1) : initializeApp(firebaseConfig)
 export const storage = getStorage(app, process.env.NEXT_PUBLIC_BUCKET_URL)

@@ -33,6 +33,21 @@ type Props = {
   handleSubmit: () => Promise<void>
 }
 
+const getSuccess = ({ data }: { data: Doujin | undefined }) => {
+  if (!data) throw Error() // when doujin not found -> undefined
+  const {
+    nhentai: {
+      info: { title },
+    },
+  } = data ?? {}
+
+  const success = `${title.english ?? title.japanese} added`
+
+  return {
+    success,
+  }
+}
+
 // @ts-ignore
 export const TodoDoujin = createContext<Props>()
 
@@ -50,12 +65,7 @@ export const TodoDoujinProvider = ({ children }: { children: ReactNode }) => {
     toast.promise(getDoujins({ variables: { doujinID } }), {
       loading: 'Search doujin...',
       success: ({ data }) => {
-        if (!data) throw Error() // when doujin not found -> undefined
-
-        const success = `${
-          data?.nhentai.info.title?.english ??
-          data?.nhentai.info.title?.japanese
-        } added`
+        const { success } = getSuccess({ data })
         setDoujins([...doujins, doujinID])
 
         return success
